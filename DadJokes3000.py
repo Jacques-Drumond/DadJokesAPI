@@ -16,7 +16,7 @@ art_name("Dad Jokes 3000", "blue")
 
 joke_theme = input("What's the joke theme?")
 
-url = "https://icanhazdadjoke.com/search?term=" + joke_theme
+url = "https://icanhazdadjoke.com/search"
 
 response = requests.get(
     url, 
@@ -31,6 +31,9 @@ handling = teste['results']
 
 joke_number = randint(0, total_jokes)
 
-print(handling[joke_number].get("joke"))
+try:
+    print(handling[joke_number].get("joke"))
+except IndexError:
+    print("There's no joke about this topic...")
 
 

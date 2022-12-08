@@ -18,17 +18,19 @@ joke_theme = input("What's the joke theme?")
 
 url = "https://icanhazdadjoke.com/search?term=" + joke_theme
 
-jsonn = requests.get(url, headers={"Accept":"application/json"})
-
-teste = jsonn.json()
+response = requests.get(
+    url, 
+    headers={"Accept":"application/json"},
+    params={"term": joke_theme}
+)
+teste = response.json()
 
 total_jokes = teste["total_jokes"]
-
 
 handling = teste['results']
 
 joke_number = randint(0, total_jokes)
 
-print(handling[joke_number]["joke"])
+print(handling[joke_number].get("joke"))
 
 
